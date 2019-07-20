@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="imagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAO-cY-TT8">
+                                <rect key="frame" x="84" y="772" width="246" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v39-l0-PYE">
+                                <rect key="frame" x="0.0" y="298" width="414" height="310.5"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="v39-l0-PYE" secondAttribute="height" multiplier="4:3" id="egT-S6-r6p"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Top Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inX-C1-DDX">
+                                <rect key="frame" x="159" y="310" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" spellCheckingType="no"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVg-vi-rSt">
+                                <rect key="frame" x="159" y="564" width="97" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" semanticContentAttribute="spatial" translatesAutoresizingMaskIntoConstraints="NO" id="1PY-R6-tCv">
+                                <rect key="frame" x="0.0" y="846" width="414" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fW1-Ad-PZA"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Camera" id="yVZ-zb-LQ0">
+                                        <connections>
+                                            <action selector="pickImageWithCam:" destination="BYZ-38-t0r" id="Fe6-10-9wD"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Pick Image" id="3sI-zk-bwV">
+                                        <connections>
+                                            <action selector="pickImage:" destination="BYZ-38-t0r" id="pGq-Td-9UQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Save" id="RCW-B1-5a7">
+                                        <connections>
+                                            <action selector="saveMemeButton:" destination="BYZ-38-t0r" id="W4y-tP-wjm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-1J-FLm">
+                                <rect key="frame" x="0.0" y="34" width="414" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="RbP-b5-0I1"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Meme App" id="IPD-G9-VYN">
+                                        <barButtonItem key="leftBarButtonItem" title="Share" id="6zd-e3-DaS">
+                                            <connections>
+                                                <action selector="shareButton:" destination="BYZ-38-t0r" id="LKy-e3-vws"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="MFr-pI-Yk4">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="fZs-px-5qp"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="v39-l0-PYE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5ak-C7-zNd"/>
+                            <constraint firstItem="v39-l0-PYE" firstAttribute="width" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="width" id="6qx-QH-eS5"/>
+                            <constraint firstItem="1PY-R6-tCv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KWk-2R-5Il"/>
+                            <constraint firstItem="QX2-1J-FLm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="OB2-Hn-7tH"/>
+                            <constraint firstItem="v39-l0-PYE" firstAttribute="top" relation="lessThanOrEqual" secondItem="QX2-1J-FLm" secondAttribute="bottom" priority="750" id="ODd-m9-hkG"/>
+                            <constraint firstItem="1PY-R6-tCv" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="OMT-lc-obE"/>
+                            <constraint firstAttribute="bottom" secondItem="1PY-R6-tCv" secondAttribute="bottom" constant="10" id="PAK-wV-KY0"/>
+                            <constraint firstItem="qAO-cY-TT8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RJp-6U-fSx"/>
+                            <constraint firstItem="inX-C1-DDX" firstAttribute="top" secondItem="v39-l0-PYE" secondAttribute="top" constant="50" id="Tby-yS-nqL"/>
+                            <constraint firstItem="v39-l0-PYE" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Wr3-MK-30a"/>
+                            <constraint firstItem="v39-l0-PYE" firstAttribute="bottom" secondItem="wVg-vi-rSt" secondAttribute="bottom" constant="30" id="XdU-4o-kld"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qAO-cY-TT8" secondAttribute="bottom" constant="50" id="Zp2-wl-Ilf"/>
+                            <constraint firstItem="wVg-vi-rSt" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aQJ-4b-9Ex"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="QX2-1J-FLm" secondAttribute="top" constant="10" id="deB-5o-Pzp"/>
+                            <constraint firstItem="v39-l0-PYE" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="bottom" constant="-50" id="p0E-zL-Iq4"/>
+                            <constraint firstItem="v39-l0-PYE" firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-5" id="p4G-be-nzz"/>
+                            <constraint firstItem="QX2-1J-FLm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="phk-hc-xbK"/>
+                            <constraint firstItem="inX-C1-DDX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rRT-vR-gxp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="bottomText" destination="wVg-vi-rSt" id="JCu-3W-FQp"/>
+                        <outlet property="cameraButton" destination="yVZ-zb-LQ0" id="93e-T6-qGW"/>
+                        <outlet property="cameraStatus" destination="qAO-cY-TT8" id="Ecd-gP-YXs"/>
+                        <outlet property="cancelButtonOutlet" destination="MFr-pI-Yk4" id="ZnR-2V-Uie"/>
+                        <outlet property="imageToDisplay" destination="v39-l0-PYE" id="M4x-Rf-t6s"/>
+                        <outlet property="navigationBar" destination="QX2-1J-FLm" id="aNZ-Zq-goU"/>
+                        <outlet property="saveButton" destination="RCW-B1-5a7" id="i5X-b2-7Pu"/>
+                        <outlet property="shareButton" destination="6zd-e3-DaS" id="hOL-XW-9gl"/>
+                        <outlet property="toolbarOutlet" destination="1PY-R6-tCv" id="Gen-jZ-tUy"/>
+                        <outlet property="topText" destination="inX-C1-DDX" id="7hB-9J-JKh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
