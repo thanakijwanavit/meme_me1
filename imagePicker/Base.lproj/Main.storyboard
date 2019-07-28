@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme Generation View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="imagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeGenerationViewController" customModule="imagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,14 +31,14 @@
                                     <constraint firstAttribute="width" secondItem="v39-l0-PYE" secondAttribute="height" multiplier="4:3" id="egT-S6-r6p"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Top Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inX-C1-DDX">
-                                <rect key="frame" x="159" y="310" width="97" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Top Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="inX-C1-DDX">
+                                <rect key="frame" x="16" y="348" width="382" height="24"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVg-vi-rSt">
-                                <rect key="frame" x="159" y="564" width="97" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVg-vi-rSt">
+                                <rect key="frame" x="16" y="557.5" width="382" height="21"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
@@ -73,7 +73,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Meme App" id="IPD-G9-VYN">
-                                        <barButtonItem key="leftBarButtonItem" title="Share" id="6zd-e3-DaS">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="6zd-e3-DaS">
                                             <connections>
                                                 <action selector="shareButton:" destination="BYZ-38-t0r" id="LKy-e3-vws"/>
                                             </connections>
@@ -91,6 +91,7 @@
                         <constraints>
                             <constraint firstItem="v39-l0-PYE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5ak-C7-zNd"/>
                             <constraint firstItem="v39-l0-PYE" firstAttribute="width" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="width" id="6qx-QH-eS5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wVg-vi-rSt" secondAttribute="trailing" constant="16" id="F46-6a-9wt"/>
                             <constraint firstItem="1PY-R6-tCv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KWk-2R-5Il"/>
                             <constraint firstItem="QX2-1J-FLm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="OB2-Hn-7tH"/>
                             <constraint firstItem="v39-l0-PYE" firstAttribute="top" relation="lessThanOrEqual" secondItem="QX2-1J-FLm" secondAttribute="bottom" priority="750" id="ODd-m9-hkG"/>
@@ -103,6 +104,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qAO-cY-TT8" secondAttribute="bottom" constant="50" id="Zp2-wl-Ilf"/>
                             <constraint firstItem="wVg-vi-rSt" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="aQJ-4b-9Ex"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="QX2-1J-FLm" secondAttribute="top" constant="10" id="deB-5o-Pzp"/>
+                            <constraint firstItem="inX-C1-DDX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="eeT-rj-kxY"/>
+                            <constraint firstItem="wVg-vi-rSt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="fn9-Xc-IFn"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="inX-C1-DDX" secondAttribute="trailing" constant="16" id="m4B-OW-638"/>
                             <constraint firstItem="v39-l0-PYE" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="bottom" constant="-50" id="p0E-zL-Iq4"/>
                             <constraint firstItem="v39-l0-PYE" firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-5" id="p4G-be-nzz"/>
                             <constraint firstItem="QX2-1J-FLm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="phk-hc-xbK"/>
@@ -125,6 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="134.78260869565219" y="73.660714285714278"/>
         </scene>
     </scenes>
 </document>

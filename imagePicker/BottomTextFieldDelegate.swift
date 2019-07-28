@@ -13,7 +13,7 @@ class BottomTextFieldDelegate: NSObject, UITextFieldDelegate {
     let label = "BOTTOM"
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.blue/* TODO: fill in appropriate UIColor */,
+        NSAttributedString.Key.strokeColor: UIColor.black/* TODO: fill in appropriate UIColor */,
         NSAttributedString.Key.foregroundColor: UIColor.lightGray/* TODO: fill in appropriate UIColor */,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSAttributedString.Key.strokeWidth:  5/* TODO: fill in appropriate Float */
@@ -40,6 +40,7 @@ class BottomTextFieldDelegate: NSObject, UITextFieldDelegate {
         //        textField.defaultTextAttributes[.strokeWidth] = 5
         //        textField.defaultTextAttributes[.strokeColor] = UIColor.blue
         textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
         
     }
 }

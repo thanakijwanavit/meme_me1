@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>this is a description</string>
+	<string>Use photo libs to add pics to mems</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Use camera to add pics to mems</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -8,10 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
+class MemeGenerationViewController: UIViewController, UIImagePickerControllerDelegate,  UINavigationControllerDelegate {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
-    
     @IBOutlet weak var cancelButtonOutlet: UIBarButtonItem!
     @IBOutlet weak var toolbarOutlet: UIToolbar!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -25,8 +24,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
     
     
     // init deligate variables
-    let topTextDelegate = TopTextFieldDelegate()
-    let bottomTextDelegate = BottomTextFieldDelegate()
+    let topTextDelegate = TextFieldDelegate()
+    let bottomTextDelegate = TextFieldDelegate()
     
     
     // create meme variable
@@ -38,13 +37,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.topText.delegate = self.topTextDelegate
-        self.bottomText.delegate = self.bottomTextDelegate
-        topText.text = "TOP"
-        topText.textAlignment = .center
-        bottomText.text = "BOTTOM"
-        bottomText.textAlignment = .center
         
+        //set up text field delegate
+        setTextFieldAttributes()
+        
+        // set up camera button
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        if cameraButton.isEnabled == false {
+            cameraStatus.text = "Camera Unavailable"
+        }
         
         //// hide keyboard when touch something else
         //Looks for single or multiple taps.
@@ -59,12 +60,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
     
     override func viewWillAppear(_ animated: Bool) {
         
-        
-        // set up camera button
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        if cameraButton.isEnabled == false {
-            cameraStatus.text = "Camera Unavailable"
-        }
         subscribeToKeyboardNotification()
         // check and activate buttons
         checkImageHideButton()
@@ -75,34 +70,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
     }
     
     @IBAction func pickImageWithCam(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        openImagePicker(.camera)
     }
+
     @IBAction func pickImage(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        openImagePicker(.photoLibrary)
     }
     ////save Memes
     
     @IBAction func saveMemeButton(_ sender: Any) {
-        save()
+        saveMeme()
     }
     
     /// share button
     
     @IBAction func shareButton(_ sender: Any) {
         // image to share
-//        let image = self.Meme
-        
+        // let image = self.Meme
         // set up activity view controller
-        save()
+//        save()
         let imageToShare = [self.meme?.memedImage] as [UIImage?]
         let activityViewController = UIActivityViewController(activityItems: imageToShare as [UIImage?] as [Any], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        activityViewController.completionWithItemsHandler = {(activity, completed, items, error) in
+            if (completed){
+                self.saveMeme()
+            }
+            //Dismiss the Shareactivitycontroller
+            self.dismiss(animated: true, completion: nil)
+        }
         
         // exclude some activity types from the list (optional)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
@@ -144,22 +140,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
     }
 
     @objc func keyboardWillShow(_ notification:Notification) {
-        if !self.keyboardStatus{
-            view.frame.origin.y -= 0.5 * getKeyboardHeight(notification)
-            if self.topText.isEditing{
-                view.frame.origin.y += 0.5 * getKeyboardHeight(notification)
-            }
-            self.keyboardStatus = true
+        if (self.bottomText.isEditing){
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     @objc func keyboardWillHide(_ notification:Notification) {
         
-        if self.keyboardStatus {
-            view.frame.origin.y += 0.5 * getKeyboardHeight(notification)
-            if self.topText.isEditing{
-                view.frame.origin.y -= 0.5 * getKeyboardHeight(notification)
-            }
-            self.keyboardStatus = false
+        if (self.bottomText.isEditing){
+            view.frame.origin.y = 0
         }
     }
     
@@ -181,7 +169,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
     
     
     /// Creating memes ////////////
-    func save() {
+    func saveMeme() {
         // Create the meme
         let memedImage = generateMemedImage()
         let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imageToDisplay.image!, memedImage: memedImage!)
@@ -193,10 +181,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
     
     func generateMemedImage() -> UIImage? {
         
+        hideToolbars(true)
         // TODO: Hide toolbar and navbar
-        toolbarOutlet.isHidden = true
-        cameraStatus.isHidden = true
-        navigationBar.isHidden = true
+        
         
        let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(imageToDisplay.frame.size, false, scale)
@@ -212,11 +199,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
         print("scale is:",scale)
         
         // TODO: Show toolbar and navbar
-        toolbarOutlet.isHidden = false
-        cameraStatus.isHidden = false
-        navigationBar.isHidden = false
+        hideToolbars(false)
         return memedImage
     }
+    func hideToolbars(_ hide:Bool){
+        toolbarOutlet.isHidden = hide
+        cameraStatus.isHidden = hide
+        navigationBar.isHidden = hide
+    }
+    
     struct Meme {
         var topText: String
         var bottomText: String
@@ -232,6 +223,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate,  UINavi
             cancelButtonOutlet.isEnabled = false
         }
     }
+    func setTextFieldAttributes(){
+        self.topText.delegate =  self.topTextDelegate
+        self.topTextDelegate.label = "TOP"
+        self.bottomText.delegate = self.bottomTextDelegate
+        self.bottomTextDelegate.label = "BOTTOM"
+    }
+    // open an image picker
+    func openImagePicker(_ type: UIImagePickerController.SourceType){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = type
+        present(picker, animated: true, completion: nil)
+    }
+
 
 }
 
